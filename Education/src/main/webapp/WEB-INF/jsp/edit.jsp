@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+body {
+	text-size: 15px;
+}
+</style>
 <body>
 <h2>STUDENT EDIT</h2>
 	<form method="POST" action="/save_st">

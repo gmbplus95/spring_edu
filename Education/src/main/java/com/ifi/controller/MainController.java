@@ -45,9 +45,11 @@ public class MainController {
 			stModel.setStudentName(studentName);
 			stModel.setStudentAge(studentAge);
 			stModel.setStudentLocation(studentLocation);
+			//stModel.getS
 		}
 		
 		studentRepo.save(stModel);
+		
 		return mv;	
 	}
 	
@@ -95,5 +97,24 @@ public class MainController {
 		return mv;	
 	}
 	
+	@GetMapping(value="/delete_co/{courseid}")
+	public ModelAndView deleteCo(@PathVariable("courseid") int courseid){
+		ModelAndView mv=new ModelAndView("redirect:/course");
+		courseRepo.deleteById(courseid);
+		return mv;
+	}
+	
+	@GetMapping(value="/view_co/{courseid}")
+	public ModelAndView viewCo(@PathVariable("courseid") int courseid){
+		ModelAndView mv=new ModelAndView("view-2");
+		mv.addObject("listCourse",courseRepo.findById(courseid).orElse(null));
+		return mv;
+	}
+	
+	@GetMapping(value="/edit_co/{courseid}")
+	public String editCo(@PathVariable("courseid") int courseid,Model model){
+		model.addAttribute("listCourse",courseRepo.findById(courseid).orElse(null));
+		return "edit-2";
+	}
 }
 	

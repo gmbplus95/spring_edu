@@ -9,6 +9,10 @@
 <title>Insert title here</title>
 <head>
 <style>
+
+body {
+	text-size: 15px;
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -39,9 +43,9 @@ tr:nth-child(even) {
     <td>${listCourse.courseid }</td>
     <td>${listCourse.coursename }</td>
     <td>
-    	<a href="view_st/${listCourse.courseid }">View</a>
-    	<a href ="delete_st/${listCourse.courseid }">Delete</a>
-    	<a href ="edit_st/${listCourse.courseid }">Edit</a>
+    	<a href="view_co/${listCourse.courseid }">View</a>
+    	<a href ="delete_co/${listCourse.courseid }">Delete</a>
+    	<a href ="edit_co/${listCourse.courseid }">Edit</a>
     </td>
   </tr>
   </c:forEach>

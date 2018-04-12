@@ -9,28 +9,22 @@
 <title>Insert title here</title>
 </head>
 <style>
-body {
+	body {
 	text-size: 15px;
 }
 </style>
 <body>
 	
-	<h2>STUDENT DETAIL</h2>
+	<h2>COURSE DETAIL</h2>
 
 <table>
 <tr>
 	<th>ID</th>
-    <th>Student Name</th>
-    <th>Student Age</th>  
-    <th>Student Location</th>  
+    <th>Course Name</th> 
   </tr>
- <c:set var="listStudent" scope="application" value="${listStudent}"/>
   <tr>
-     <td>${listStudent.studentid}</td>
-     <td>${listStudent.studentName}</td> 
-    <td>${listStudent.studentAge }</td>
-    <td>${listStudent.studentLocation }</td>
-    
+     <td>${listCourse.courseid}</td>
+     <td>${listCourse.coursename}</td> 
   </tr>
 </table>
 </body>
