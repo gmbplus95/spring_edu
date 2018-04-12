@@ -23,15 +23,18 @@ body {
     <th>Student Name</th>
     <th>Student Age</th>  
     <th>Student Location</th>  
+    <th>Course</th>
   </tr>
- <c:set var="listStudent" scope="application" value="${listStudent}"/>
   <tr>
      <td>${listStudent.studentid}</td>
      <td>${listStudent.studentName}</td> 
     <td>${listStudent.studentAge }</td>
     <td>${listStudent.studentLocation }</td>
-    
+     <td>${listCourse.coursename }</td>
   </tr>
+ 
+  
 </table>
+ <p> <a href="/view_st/add_co/${listStudent.studentid}">Add Course!</a> </p>
 </body>
 </html>

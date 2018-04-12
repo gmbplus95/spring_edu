@@ -1,5 +1,8 @@
 package com.ifi.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -116,5 +119,26 @@ public class MainController {
 		model.addAttribute("listCourse",courseRepo.findById(courseid).orElse(null));
 		return "edit-2";
 	}
+	
+	@GetMapping(value="/view_st/add_co/{studentid}")
+	public String addCotoSt(@PathVariable("studentid") int studentid,Model model){
+		model.addAttribute("listStudent",studentRepo.findById(studentid).orElse(null));
+		model.addAttribute("listCourse", courseRepo.findAll());
+		return "addcotost";
+	}
+	
+	@GetMapping(value="/view_st/saveco")
+	public String addCotoStSuc(@RequestParam("courseid") int courseid,
+							   @RequestParam("studentid") int studentid, Model model) {
+		StModel stmodel;
+		stmodel=studentRepo.findById(studentid).orElse(null);
+//		stmodel.setCoursemodels((Set<CourseModel>) courseRepo.findById(courseid).orElse(null));
+//		model.addAttribute("listStudent",stmodel);
+//		model.addAttribute("listCourse",coursemodel);
+		return "View";
+	}
+	
+	
+	
 }
 	

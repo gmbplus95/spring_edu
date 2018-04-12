@@ -55,7 +55,7 @@ tr:nth-child(even) {
 </table>
 <form method="POST" action="/save_st">
 	<br>
-  <input type="hidden" name="studentid">
+  <input type="hidden" name="studentid" >
   <br>
   Student name:<br>
   <input type="text" name="studentName" >
@@ -65,10 +65,10 @@ tr:nth-child(even) {
   <br>
   Student location:<br>
   <input type="text" name="studentLocation">
-	</br>
+	<br>
   <input type="submit" value="Submit">
 </form> 
-</br>
+<br>
 <p><a href ="/course">View Course!!</a></p>
 </body>
 </html>
