@@ -1,6 +1,5 @@
 package com.ifi.models;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -22,7 +21,7 @@ public class CourseModel {
 	@Column(name="coursename")
 	public String coursename;
 	@ManyToMany(mappedBy = "coursemodels")
-    private Set<StModel> stModels=new HashSet<StModel>();
+    private Set<StModel> stModels;
 	
 	public CourseModel() {
 		super();

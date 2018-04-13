@@ -1,5 +1,4 @@
 package com.ifi.models;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Access;
@@ -29,7 +28,7 @@ public class StModel {
 	public String studentAge;
 	@Column(name="studentlocation")
 	public String studentLocation;
-	private Set<CourseModel> coursemodels=new HashSet<CourseModel>();
+	private Set<CourseModel> coursemodels;
 	
 @Access(AccessType.PROPERTY)
 	@ManyToMany(

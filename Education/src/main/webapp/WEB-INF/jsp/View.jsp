@@ -30,11 +30,14 @@ body {
      <td>${listStudent.studentName}</td> 
     <td>${listStudent.studentAge }</td>
     <td>${listStudent.studentLocation }</td>
+    <c:forEach var="listCourse" items="${listCourse }">
      <td>${listCourse.coursename }</td>
+     </c:forEach>
   </tr>
  
   
 </table>
- <p> <a href="/view_st/add_co/${listStudent.studentid}">Add Course!</a> </p>
+ <p> <a href="/view_st/add_co/${listStudent.studentid}">Add Student's Course!</a> </p>
+  <p> <a href="/view_st/delete_co/${listStudent.studentid}">Delete Student's Course!</a> </p>
 </body>
 </html>

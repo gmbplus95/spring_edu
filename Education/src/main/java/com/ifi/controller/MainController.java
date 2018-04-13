@@ -1,8 +1,5 @@
 package com.ifi.controller;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +45,6 @@ public class MainController {
 			stModel.setStudentName(studentName);
 			stModel.setStudentAge(studentAge);
 			stModel.setStudentLocation(studentLocation);
-			//stModel.getS
 		}
 		
 		studentRepo.save(stModel);
@@ -59,7 +55,10 @@ public class MainController {
 	@GetMapping(value="/view_st/{studentid}")
 	public ModelAndView viewSt(@PathVariable("studentid") int studentid){
 		ModelAndView mv=new ModelAndView("View");
-		mv.addObject("listStudent",studentRepo.findById(studentid).orElse(null));
+		StModel stmodel;
+		stmodel=studentRepo.findById(studentid).orElse(null);
+		mv.addObject("listStudent",stmodel);
+		mv.addObject("listCourse",stmodel.getCoursemodels());
 		return mv;
 	}
 	
@@ -128,16 +127,39 @@ public class MainController {
 	}
 	
 	@GetMapping(value="/view_st/saveco")
-	public String addCotoStSuc(@RequestParam("courseid") int courseid,
+	public String addCotoSt(@RequestParam("courseid") int courseid,
 							   @RequestParam("studentid") int studentid, Model model) {
 		StModel stmodel;
 		stmodel=studentRepo.findById(studentid).orElse(null);
-//		stmodel.setCoursemodels((Set<CourseModel>) courseRepo.findById(courseid).orElse(null));
-//		model.addAttribute("listStudent",stmodel);
-//		model.addAttribute("listCourse",coursemodel);
-		return "View";
+		CourseModel coursemodels;
+		coursemodels=courseRepo.findById(courseid).orElse(null);
+		stmodel.getCoursemodels().add(coursemodels);
+		studentRepo.save(stmodel);
+		return "redirect:/view_st/"+studentid;
 	}
 	
+	@GetMapping(value="/view_st/delete_co/{studentid}")
+	public String delCoSt(@PathVariable("studentid") int studentid,Model model){
+		StModel stmodel;
+		stmodel=studentRepo.findById(studentid).orElse(null);
+		model.addAttribute("listStudent",stmodel);
+		model.addAttribute("listCourse", stmodel.getCoursemodels());
+		return "deleteco";
+	}
+	
+	@GetMapping(value="/view_st/deleteco")
+	public String delCoSt(@RequestParam("courseid") int courseid,
+							   @RequestParam("studentid") int studentid, Model model) {
+		StModel stmodel;
+		stmodel=studentRepo.findById(studentid).orElse(null);
+		//model.addAttribute("listStudent",stmodel);
+		CourseModel coursemodels;
+		coursemodels=courseRepo.findById(courseid).orElse(null);
+		stmodel.getCoursemodels().remove(coursemodels);
+		//model.addAttribute("listCourse",coursemodels);
+		studentRepo.save(stmodel);
+		return "redirect:/view_st/"+studentid;
+	}
 	
 	
 }
