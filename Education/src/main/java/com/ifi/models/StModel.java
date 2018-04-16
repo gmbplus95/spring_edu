@@ -30,9 +30,12 @@ public class StModel {
 	public String studentLocation;
 	private Set<CourseModel> coursemodels;
 	
-@Access(AccessType.PROPERTY)
+	@Access(AccessType.PROPERTY)
 	@ManyToMany(
-		fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
+		fetch = FetchType.LAZY,
+		cascade = { 
+			    CascadeType.PERSIST, 
+			    CascadeType.MERGE})
     @JoinTable(
         name = "room", 
         joinColumns = { @JoinColumn(name = "studentid") }, 
