@@ -107,13 +107,12 @@ public class MainController {
 	}
 	
 	@GetMapping(value="/view_co/{courseid}")
-	public ModelAndView viewCo(@PathVariable("courseid") int courseid){
-		ModelAndView mv=new ModelAndView("view-2");
+	public String viewCo(@PathVariable("courseid") int courseid,Model model){
 		CourseModel coursemodel=courseRepo.findById(courseid).orElse(null);
-		mv.addObject("listCourse",coursemodel);
-		mv.addObject("st",coursemodel.getStModels());//lay danh sach student trong course
-		mv.addObject("count",courseRepo.findAllChildrenCount(courseid));
-		return mv;
+		model.addAttribute("listCourse",coursemodel);
+		model.addAttribute("st",coursemodel.getStModels());//lay danh sach student trong course
+		model.addAttribute("count",courseRepo.findStudentByCourseId(courseid));
+		return "view-2";
 	}
 	
 	@GetMapping(value="/edit_co/{courseid}")
@@ -121,10 +120,13 @@ public class MainController {
 		model.addAttribute("listCourse",courseRepo.findById(courseid).orElse(null));
 		return "edit-2";
 	}
+	//Course and Student
 	
 	@GetMapping(value="/view_st/add_co/{studentid}")
 	public String addCotoSt(@PathVariable("studentid") int studentid,Model model){
-		model.addAttribute("listStudent",studentRepo.findById(studentid).orElse(null));
+		StModel stmodel;
+		stmodel=studentRepo.findById(studentid).orElse(null);
+		model.addAttribute("listStudent",stmodel);
 		model.addAttribute("listCourse", courseRepo.findAll());
 		return "addcotost";
 	}

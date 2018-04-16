@@ -11,26 +11,49 @@
 <style>
 	body {
 	text-size: 15px;
-}
+	}
+	
+	table{
+		text-align: center;
+	}
+	th {
+		margin: 10px;
+	}
+	.comma:not(:first-child) {
+ 	 margin-left: -.3em;  
+	}
+
+	.comma:empty {
+  display: none;
+	}
+
+	.comma:not(:first-child):before {
+  	content: ", ";
+	}
+	}
 </style>
 <body>
 	
 	<h2>COURSE DETAIL</h2>
 
 <table>
-<tr>
-	<th>ID</th>
-    <th>Course Name</th> 
-    <th>Student List</th>
-    <th>Number of Student</th>
-  </tr>
+	<tr>
+		<th>ID</th>
+	    <th>Course Name</th> 
+	    <th>Student List</th>
+	    <th>Number of Student</th>
+  	</tr>
   <tr>
      <td>${listCourse.courseid}</td>
      <td>${listCourse.coursename}</td> 
-     <td>
-     <c:forEach var="listStudent" items="${st }">
-    	${listStudent.studentName }
-     </c:forEach>
+    <td>
+     		
+			     <c:forEach var="listStudent" items="${st }">
+				     <span class="comma">
+				    	${listStudent.studentName}
+				     </span>
+			     </c:forEach>
+			     
      </td>
      <td>${count }</td>
   </tr>
