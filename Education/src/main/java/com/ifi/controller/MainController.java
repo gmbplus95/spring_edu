@@ -109,7 +109,10 @@ public class MainController {
 	@GetMapping(value="/view_co/{courseid}")
 	public ModelAndView viewCo(@PathVariable("courseid") int courseid){
 		ModelAndView mv=new ModelAndView("view-2");
-		mv.addObject("listCourse",courseRepo.findById(courseid).orElse(null));
+		CourseModel coursemodel=courseRepo.findById(courseid).orElse(null);
+		mv.addObject("listCourse",coursemodel);
+		mv.addObject("st",coursemodel.getStModels());//lay danh sach student trong course
+		mv.addObject("count",courseRepo.findAllChildrenCount(courseid));
 		return mv;
 	}
 	
@@ -152,11 +155,9 @@ public class MainController {
 							   @RequestParam("studentid") int studentid, Model model) {
 		StModel stmodel;
 		stmodel=studentRepo.findById(studentid).orElse(null);
-		//model.addAttribute("listStudent",stmodel);
 		CourseModel coursemodels;
 		coursemodels=courseRepo.findById(courseid).orElse(null);
 		stmodel.getCoursemodels().remove(coursemodels);
-		//model.addAttribute("listCourse",coursemodels);
 		studentRepo.save(stmodel);
 		return "redirect:/view_st/"+studentid;
 	}

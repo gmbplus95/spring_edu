@@ -21,10 +21,18 @@
 <tr>
 	<th>ID</th>
     <th>Course Name</th> 
+    <th>Student List</th>
+    <th>Number of Student</th>
   </tr>
   <tr>
      <td>${listCourse.courseid}</td>
      <td>${listCourse.coursename}</td> 
+     <td>
+     <c:forEach var="listStudent" items="${st }">
+    	${listStudent.studentName }
+     </c:forEach>
+     </td>
+     <td>${count }</td>
   </tr>
 </table>
 </body>
